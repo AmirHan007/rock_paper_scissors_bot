@@ -7,7 +7,7 @@ from aiogram.enums import ParseMode
 from config_data.config import Config, load_config
 from handlers import other_handlers, user_handlers
 
-print("Debug started")
+
 # Инициализируем логгер
 logger = logging.getLogger(__name__)
 
