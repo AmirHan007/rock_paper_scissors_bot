@@ -1,4 +1,4 @@
-from aiogram import F, Router
+from aiogram import F, Router, Bot
 from aiogram.filters import Command, CommandStart
 from aiogram.types import Message
 from keyboards.keyboards import game_kb, yes_no_kb
@@ -18,6 +18,14 @@ async def process_start_command(message: Message):
 @router.message(Command(commands='help'))
 async def process_help_command(message: Message):
     await message.answer(text=LEXICON_RU['/help'], reply_markup=yes_no_kb)
+
+
+# Этот хэндлер будет срабатывать на команду "/delmenu"
+# и удалять кнопку Menu c командами
+@router.message(Command(commands='delmenu'))
+async def del_main_menu(message: Message, bot: Bot):
+    await bot.delete_my_commands()
+    await message.answer(text='Кнопка "Menu" удалена')
 
 
 # Этот хэндлер срабатывает на согласие пользователя играть в игру
